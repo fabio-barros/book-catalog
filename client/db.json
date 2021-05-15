@@ -1,0 +1,16 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Mar Morto - Jorge Amado"
+    },
+    {
+      "title": "Memorial do Convento - José Saramago",
+      "id": 2
+    },
+    {
+      "title": "O Sol Também Se Levanta - Ernest Hemingway",
+      "id": 3
+    }
+  ]
+}
