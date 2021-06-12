@@ -1,23 +1,47 @@
-import {useState, FormEvent} from 'react'
+import {
+    useState,
+    FormEvent,
+    FormEventHandler,
+    FC,
+    useEffect,
+    useContext,
+} from "react";
+import { BookContext } from "../contexts/BookContext";
+import { BookInput } from "../interfaces/BookInterface";
 
-interface Props {
-    onAdd: (book: {title: string}) => void;
-}
+const AddBooksForm: FC = () => {
+    const [title, setTitle] = useState<string>("");
+    const [author, setAuthor] = useState<string>("");
 
-const AddBooksForm = ({onAdd}: Props) => {
-    const [title, setTitle] = useState('')
+    const { addBook } = useContext(BookContext);
 
-    const handleSubmit= (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onAdd({title: title})
-    }
+        addBook({ title: title, author: author });
+        setAuthor("");
+        setTitle("");
+    };
+
     return (
         <form onSubmit={handleSubmit}>
-          <label >Song name:</label>  
-          <input type="text" value={title} required onChange={(e) => setTitle(e.target.value)}/>
-          <input type="submit" value="add book"/>
-        </form>
-    )
-}
+            <input
+                placeholder="Title"
+                type="text"
+                value={title}
+                required
+                onChange={(e) => setTitle(e.target.value)}
+            />
 
-export default AddBooksForm
+            <input
+                placeholder="Author"
+                type="text"
+                value={author}
+                required
+                onChange={(e) => setAuthor(e.target.value)}
+            />
+            <input type="submit" value="add book" />
+        </form>
+    );
+};
+
+export default AddBooksForm;

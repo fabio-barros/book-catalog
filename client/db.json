@@ -1,16 +1,29 @@
 {
   "books": [
     {
-      "id": 1,
-      "title": "Mar Morto - Jorge Amado"
+      "author": "Ernest Hermingway",
+      "title": "O Sol Também Se Levanta",
+      "id": 1
     },
     {
-      "title": "Memorial do Convento - José Saramago",
+      "author": "Manuel Antônio de Almeida",
+      "title": "Memórias de um Sargento de Milícias",
       "id": 2
     },
     {
-      "title": "O Sol Também Se Levanta - Ernest Hemingway",
-      "id": 3
+      "author": "Dráuzio Varela",
+      "title": "Estação Carandiru",
+      "id": 4
+    },
+    {
+      "title": "S. Bernardo",
+      "author": "Graciliano Ramos",
+      "id": 6
+    },
+    {
+      "title": "O Som e a Fúria",
+      "author": "William Faulkner",
+      "id": 7
     }
   ]
 }

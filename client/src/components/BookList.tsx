@@ -1,80 +1,65 @@
 import { useContext, FC, useState, useEffect } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { BookContext } from "../contexts/BookContext";
 import AddBooksForm from "../components/AddBooksForm";
-
-import axios from "axios";
-
-import {  useDispatch, useSelector } from "react-redux";
-import { listBooks } from "../redux/actions/bookActions";
-import { RootState } from "../redux/store";
-import { AppDispatch } from "../redux/store";
-
+import { useDispatch, useSelector } from "react-redux";
+// import { listBooks } from "../redux/actions/bookActions";
+// import { RootState } from "../redux/store";
+// import { AppDispatch } from "../redux/store";
+import ThemeToggle from "./ThemeToggle";
+import { BookDetails } from "./BookDetails";
+import { ActionType } from "../reducers/BookReducers";
 
 interface Book {
     id: number;
     title: string;
 }
 
-const BookListProvider: FC = () => {
+interface BookInput {
+    title: string;
+}
 
-    const [_books, setBooks] = useState<Book[]>([]);
+const BookListProvider: FC = () => {
+    const { listBooks, books } = useContext(BookContext);
+
+    // const [_books, setBooks] = useState<Book[]>([]);
 
     const { isLightMode, light, dark } = useContext(ThemeContext);
     const theme = isLightMode ? light : dark;
-    
+
+    //***********************REDUX************************************** */
     //Using react-redux to list books instead of the 'getBooks' function
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    const bookList = useSelector((state: RootState) =>{
-        console.log(state.bookList);
-        return state.bookList;
-    })
+    // const bookList = useSelector((state: RootState) => {
+    //     console.log(state.bookList);
+    //     return state.bookList;
+    // });
 
-    const { loading, error, books } = bookList;
+    // const { loading, error, books } = bookList;
 
     useEffect(() => {
-        const getData = async () => {
-            const booksFromServer = await getBooks();
-            setBooks(booksFromServer);
-            
+        const get = async () => {
+            listBooks();
         };
-        getData();
-        dispatch(listBooks());
-    }, [dispatch]);
+        get();
+    }, []);
 
-    //USING JSON-SERVER
-    const getBooks = async () => {
-        const res = await axios.get("http://localhost:5000/books");
-        return res.data;
-    };
-
-    const addBook = async (book: { title: string }) => {
-        const res = await axios.post("http://localhost:5000/books", book);
-        setBooks([...books, res.data]);
-    };
-
-    // const deleteBook = async (id) => {
-    //     await axios.delete(`http://localhost:5000/tasks/${id}`);
-    //     setTasks(tasks.filter((task) => task.id !== id));
-    // };
-
-    return (
+    return books.length ? (
         <div
             className="book-list"
             style={{ color: theme.syntax, background: theme.bg }}
         >
             <ul>
-                {_books.map((book) => {
-                    return (
-                        <li style={{ background: theme.ui }} key={book.id}>
-                            {" "}
-                            {book.title}
-                        </li>
-                    );
+                {books.map((book) => {
+                    return <BookDetails book={book} />;
                 })}
             </ul>
-            <AddBooksForm onAdd={addBook} />
+            <AddBooksForm />
+            <ThemeToggle />
         </div>
+    ) : (
+        <div>No books to read.</div>
     );
 };
 

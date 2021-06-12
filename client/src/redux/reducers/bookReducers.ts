@@ -9,7 +9,10 @@ interface Books {
     title: string;
 }
 
-export const bookListReducer = (state = { books: [] as Books[] }, action: any) => {
+export const bookListReducer = (
+    state = { books: [] as Books[] },
+    action: any
+) => {
     switch (action.type) {
         case BOOK_LIST_REQUEST:
             return { loading: true, books: [] };

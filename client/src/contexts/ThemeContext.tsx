@@ -16,13 +16,13 @@ interface ContextProps extends stateTypes {
     toggleTheme: () => void;
 }
 
-export const ThemeContext = createContext({} as ContextProps);
+export const ThemeContext = createContext<ContextProps>({} as ContextProps);
 
 const ThemeContextProvider: FC = ({ children }) => {
     const [state, setState] = useState<stateTypes>({
         isLightMode: true,
-        light: { syntax: "#555", ui: "#ddd", bg: '"#eee"' },
-        dark: { syntax: "#ddd", ui: "#333", bg: "#555" },
+        light: { syntax: "#555", ui: "#ddd", bg: "#eee" },
+        dark: { syntax: "#fff", ui: "#333", bg: "#555" },
     });
 
     const toggleTheme = () => {

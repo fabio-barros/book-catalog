@@ -2,21 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
-
 import { Provider } from "react-redux";
-import store from './redux/store'
-
-import { ConfigProvider } from "antd";
-import ptBR from "antd/lib/locale/pt_BR";
+import store from "./redux/store";
 
 import "./styles/css/index.css";
-import "antd/dist/antd.css";
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConfigProvider locale={ptBR}>
-            <App />
-        </ConfigProvider>
+        <App />
     </Provider>,
     document.getElementById("root")
 );
