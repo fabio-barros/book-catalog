@@ -12,6 +12,6 @@
 -   [React Bootstrap](https://react-bootstrap.github.io/)
 - [JSON Server](https://github.com/typicode/json-server)
 -   [.NET Core](https://developers.google.com/maps/documentation/javascript/overview)
--   [Entity Framework](https://github.com/google-map-react/google-map-react)
+-   [Entity Framework Core](https://docs.microsoft.com/pt-br/ef/core/)
 -   [Npgsql](https://www.npgsql.org/efcore/index.html)
 -   [PostgreSQL](https://www.postgresql.org/)
