@@ -11,19 +11,10 @@
       "id": 2
     },
     {
-      "author": "Dráuzio Varela",
-      "title": "Estação Carandiru",
-      "id": 4
-    },
-    {
-      "title": "S. Bernardo",
-      "author": "Graciliano Ramos",
-      "id": 6
-    },
-    {
-      "title": "O Som e a Fúria",
-      "author": "William Faulkner",
-      "id": 7
+      "title": "Mar Morto",
+      "author": "Jorge Amado",
+      "isbn": "978-8535911824 ",
+      "id": 3
     }
   ]
 }

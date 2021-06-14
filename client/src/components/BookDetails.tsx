@@ -6,15 +6,18 @@ interface BookDetailsProps {
     book: Book;
 }
 
-export const BookDetails: React.FC<BookDetailsProps> = ({
-    book: { author, title, id },
+const BookDetails: React.FC<BookDetailsProps> = ({
+    book: { author, title, id, isbn },
 }) => {
     const { removeBook } = useContext(BookContext);
 
     return (
-        <li key={id} onClick={() => removeBook(id)}>
+        <div onClick={() => removeBook(id)}>
             <div>{title}</div>
             <div>{author}</div>
-        </li>
+            <div>{isbn}</div>
+        </div>
     );
 };
+
+export default BookDetails;

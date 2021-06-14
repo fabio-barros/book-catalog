@@ -1,10 +1,12 @@
-import { createContext, useState, FC, useEffect, useReducer } from "react";
+import { createContext, FC, useReducer } from "react";
 import { Book, BookInput } from "../interfaces/BookInterface";
-import { bookReducer, ActionType, ListAction } from "../reducers/BookReducers";
+import { bookReducer, ActionType} from "../reducers/BookReducers";
 import axios from "axios";
 
 interface BookContextProps {
     books: Book[];
+    isLoading?: boolean;
+    error?: string;
     listBooks: () => Promise<void>;
     addBook: (book: BookInput) => Promise<void>;
     removeBook: (id: number) => Promise<void>;
@@ -24,11 +26,18 @@ const BookContextProvider: FC = ({ children }) => {
             isLoading: false,
         }
     );
+    function sleep(ms: number) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
 
     const listBooks = async () => {
         try {
+            console.log(process.env.REACT_APP_DOTNET_API)
             dispatch({ type: ActionType.REQUEST });
-            const { data } = await axios.get("http://localhost:5000/books");
+            await sleep(2000);
+            const { data } = await axios.get(
+                `${process.env.REACT_APP_DOTNET_API}`
+            );
             dispatch({
                 type: ActionType.SUCCESS,
                 payload: data,
@@ -45,7 +54,10 @@ const BookContextProvider: FC = ({ children }) => {
     };
 
     const addBook = async (book: BookInput) => {
-        const { data } = await axios.post("http://localhost:5000/books", book);
+        const { data } = await axios.post(
+            `${process.env.REACT_APP_DOTNET_API}`,
+            book
+        );
         dispatch({
             type: ActionType.ADD,
             payload: data,
@@ -53,8 +65,18 @@ const BookContextProvider: FC = ({ children }) => {
     };
 
     const removeBook = async (id: number) => {
-        await axios.delete(`http://localhost:5000/books/${id}`);
-        dispatch({ type: ActionType.REMOVE, id: id });
+        try {
+            await axios.delete(`${process.env.REACT_APP_DOTNET_API}/${id}`);
+            dispatch({ type: ActionType.REMOVE, id: id });
+        } catch (error) {
+            dispatch({
+                type: ActionType.FAILURE,
+                error:
+                    error.response && error.reponse.data.message
+                        ? error.reponse.data.message
+                        : error.message,
+            });
+        }
     };
 
     // const addBook = async (book: BookInput) => {
@@ -72,6 +94,8 @@ const BookContextProvider: FC = ({ children }) => {
         <BookContext.Provider
             value={{
                 books: books,
+                isLoading: isLoading,
+                error: error,
                 listBooks: listBooks,
                 addBook: addBook,
                 removeBook: removeBook,

@@ -1,4 +1,4 @@
-import { BookInput, Book } from "../interfaces/BookInterface";
+import { Book } from "../interfaces/BookInterface";
 
 export enum ActionType {
     REQUEST = "REQUEST",
@@ -34,6 +34,7 @@ export const bookReducer = (state: State, action: ListAction): State => {
         case ActionType.ADD:
             return { data: [...state.data, action.payload] };
         case ActionType.REMOVE:
+            console.log("remove");
             return { data: state.data.filter((book) => book.id !== action.id) };
 
         default:
