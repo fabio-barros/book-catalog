@@ -1,16 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./redux/store";
 
 import "./styles/css/index.css";
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Fragment>
         <App />
-    </Provider>,
+    </Fragment>,
     document.getElementById("root")
 );
 

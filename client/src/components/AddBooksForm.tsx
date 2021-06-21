@@ -10,7 +10,6 @@ const AddBooksForm: FC = () => {
     const { addBook } = useContext(BookContext);
 
     const handleSubmit = (e: FormEvent<HTMLElement>) => {
-        console.log("hey");
         e.preventDefault();
         addBook({ title: title, author: author, isbn: isbn });
         setAuthor("");
@@ -50,7 +49,7 @@ const AddBooksForm: FC = () => {
                     onChange={(e) => setIsbn(e.target.value)}
                 />
             </Form.Group>
-            <Button type="submit" className="submit-btn">
+            <Button type="submit" className="submit-btn" block>
                 Submit
             </Button>
         </Form>

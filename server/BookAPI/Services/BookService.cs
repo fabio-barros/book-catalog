@@ -39,7 +39,7 @@ namespace BookAPI.Services
                 throw new Exception("Book already exists");
             }
 
-
+            
             _bookContext.Books.Add(book);
 
             await _bookContext.SaveChangesAsync();

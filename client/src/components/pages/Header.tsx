@@ -11,16 +11,37 @@ const Navbar: FC = (props: Props) => {
     const theme = isLightMode ? light : dark;
 
     return (
-        <Container className="header-wrapper">
-            <Row className="header-row">
+        <Container className="header-wrapper ">
+            <Row
+                className="header-row py-4"
+                style={{ color: theme.syntax, background: theme.bg }}
+            >
                 <Col
-                    className="header-col"
-                    style={{ color: theme.syntax, background: theme.bg }}
+                    className="header-col mx-auto text-center"
+                    style={{
+                        color: theme.syntax,
+                        background: theme.bg,
+                        width: "200px",
+                    }}
                 >
-                    {/* <nav style={{ color: theme.syntax, background: theme.bg }}> */}
-                    <p>You have {books.length} books to read.</p>
-                    <h1>Book List</h1>
-                    {/* </nav> */}
+                    {/* <p>You have {books.length} books to read.</p> */}
+
+                    <h1 style={{ fontSize: "4rem", color: "#2F74C0" }}>
+                        <span
+                            className="iconify "
+                            data-icon="bi:book-half"
+                            data-inline="false"
+                            style={{
+                                color: "#2F74C0",
+                                width: "65px",
+                                height: "65px",
+                            }}
+                        >
+                            {/* <p>You have {books.length} books to read.</p> */}
+                        </span>
+                        Book List
+                    </h1>
+                    <hr />
                 </Col>
             </Row>
         </Container>

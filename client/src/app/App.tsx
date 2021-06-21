@@ -12,7 +12,7 @@ function App() {
             <ThemeContextProvider>
                 <AuthContextProvider>
                     <BookContextProvider>
-                        <Container className="main-wrapper" fluid>
+                        <Container className="main-wrapper " fluid>
                             <Header />
                             <BookList />
                         </Container>

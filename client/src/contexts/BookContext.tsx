@@ -32,9 +32,9 @@ const BookContextProvider: FC = ({ children }) => {
 
     const listBooks = async () => {
         try {
-            console.log(process.env.REACT_APP_DOTNET_API)
+            
             dispatch({ type: ActionType.REQUEST });
-            await sleep(2000);
+            // await sleep(2000);
             const { data } = await axios.get(
                 `${process.env.REACT_APP_DOTNET_API}`
             );

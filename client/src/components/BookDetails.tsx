@@ -12,11 +12,31 @@ const BookDetails: React.FC<BookDetailsProps> = ({
     const { removeBook } = useContext(BookContext);
 
     return (
-        <div onClick={() => removeBook(id)}>
-            <div>{title}</div>
-            <div>{author}</div>
-            <div>{isbn}</div>
-        </div>
+        <tr>
+            <td>{id}</td>
+            <td>{title}</td>
+            <td>{author}</td>
+            <td>{isbn}</td>
+            <td>
+                <div
+                    onClick={() => removeBook(id)}
+                    style={{
+                        cursor: "pointer",
+                    }}
+                >
+                    <span
+                        className="iconify"
+                        data-icon="ion:trash-bin"
+                        data-inline="false"
+                        style={{
+                            color: "red",
+                            width: "30px",
+                            height: "30px",
+                        }}
+                    ></span>
+                </div>
+            </td>
+        </tr>
     );
 };
 

@@ -6,7 +6,7 @@ interface Props {}
 const ThemeToggle: FC = () => {
     const { toggleTheme } = useContext(ThemeContext);
     return (
-        <div>
+        <div style={{ float: "right" }}>
             <button onClick={toggleTheme}> Mudar Tema</button>
         </div>
     );
